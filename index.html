@@ -25,6 +25,8 @@
             --glow-accent: 0 0 15px rgba(255, 85, 85, 0.7);
             --font-terminal: 'IBM Plex Mono', monospace;
             --font-dashboard: 'JetBrains Mono', monospace;
+            --accent: #ff2a2a; /* Added for red theme */
+            --secondary: #ff6b6b; /* Added for red theme */
         }
 
         * {
@@ -212,6 +214,7 @@
             overflow: auto;
             z-index: 100;
             font-family: var(--font-dashboard);
+            background-color: var(--dark-bg);
         }
 
         canvas {
@@ -240,17 +243,18 @@
             font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: 700;
             margin: 1rem 0;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--accent), #ff6b6b);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: var(--glow);
             letter-spacing: -1px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             display: inline-block;
             font-family: var(--font-dashboard);
+            text-shadow: 0 0 10px rgba(255, 42, 42, 0.5);
+            margin-left: -10px; /* Shifted left */
         }
         
         h1::after {
@@ -260,14 +264,14 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--accent), transparent);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.5s ease;
         }
         
         h1:hover {
-            text-shadow: var(--glow-accent);
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.8);
         }
         
         h1:hover::after {
@@ -281,6 +285,8 @@
             margin-bottom: 2rem;
             opacity: 0.9;
             animation: fadeIn 2s ease;
+            text-align: left; /* Changed to left */
+            margin-left: -10px; /* Shifted left */
         }
         
         .tagline a {
@@ -311,7 +317,7 @@
         
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
             margin: 1.5rem auto;
             width: 70%;
             opacity: 0.5;
@@ -337,9 +343,9 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid var(--accent);
+            color: var(--text-dark);
+            background: rgba(20, 0, 0, 0.7);
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transform: translateY(0);
@@ -371,8 +377,8 @@
         }
         
         .button:hover {
-            background: rgba(255, 42, 42, 0.15);
-            box-shadow: 0 0 15px var(--primary), 0 0 30px rgba(255, 42, 42, 0.3);
+            background: rgba(255, 42, 42, 0.3);
+            box-shadow: 0 0 15px var(--accent), 0 0 30px rgba(255, 42, 42, 0.3);
             transform: translateY(-5px) scale(1.05);
         }
         
@@ -386,8 +392,8 @@
         }
         
         .features {
-            background: rgba(17, 17, 17, 0.8);
-            border: 1px solid var(--primary);
+            background: rgba(17, 0, 0, 0.8);
+            border: 1px solid var(--accent);
             border-radius: 12px;
             padding: 2rem;
             margin: 2rem auto;
@@ -418,18 +424,8 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
             animation: borderGlow 3s infinite alternate;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes borderGlow {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
         }
         
         .features h2 {
@@ -438,17 +434,18 @@
             color: var(--accent);
             text-shadow: 0 0 8px rgba(255, 85, 85, 0.5);
             position: relative;
-            display: inline-block;
+            display: block;
+            text-align: center; /* Centered the features heading */
         }
         
         .features h2::after {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 0;
-            width: 100%;
+            left: 25%; /* Adjusted to center the underline */
+            width: 50%; /* Adjusted to center the underline */
             height: 2px;
-            background: linear-gradient(90deg, var(--primary), transparent);
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
         
         .features ul {
@@ -474,7 +471,7 @@
         }
         
         .features li:hover {
-            color: var(--text);
+            color: var(--text-dark);
             transform: translateX(5px);
         }
         
@@ -482,14 +479,14 @@
             content: '>';
             position: absolute;
             left: 0;
-            color: var(--primary);
+            color: var(--accent);
             font-weight: bold;
             transition: all 0.3s ease;
         }
         
         .features li:hover::before {
             transform: scale(1.5);
-            color: var(--accent);
+            color: var(--secondary);
         }
         
         .footer {
@@ -502,11 +499,13 @@
         
         .typewriter {
             overflow: hidden;
-            border-right: 2px solid var(--primary);
+            border-right: 2px solid var(--accent);
             white-space: nowrap;
-            margin: 0 auto;
+            margin: 0;
             letter-spacing: 0.15em;
             animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            text-align: left;
         }
         
         .discord-login-container {
@@ -523,7 +522,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--accent);
             box-shadow: 0 0 15px rgba(255, 42, 42, 0.5);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 100;
@@ -534,8 +533,8 @@
         
         .user-avatar:hover {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 0 20px var(--primary);
-            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+            border-color: var(--secondary);
         }
 
         .logout-btn {
@@ -545,7 +544,7 @@
             padding: 0.6rem 1.2rem;
             background: rgba(255, 50, 50, 0.2);
             border: 1px solid rgba(255, 50, 50, 0.5);
-            color: #ff6b6b;
+            color: var(--secondary);
             border-radius: 6px;
             font-family: var(--font-dashboard);
             font-size: 0.9rem;
@@ -567,7 +566,7 @@
         .logout-btn:hover {
             background: rgba(255, 50, 50, 0.3);
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-            color: #ff5252;
+            color: var(--accent);
             transform: translateY(-2px);
         }
         
@@ -579,7 +578,7 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: var(--primary) }
+            50% { border-color: var(--accent) }
         }
         
         @keyframes fadeIn {
@@ -912,7 +911,7 @@
             }
             
             const drawMatrix = () => {
-                ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+                ctx.fillStyle = 'rgba(10, 0, 0, 0.05)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 
                 ctx.fillStyle = '#ff2a2a';
@@ -943,7 +942,7 @@
             const el = document.getElementById('mainLogo');
             const text = "Immortalyx #1 Site!";
             el.textContent = '';
-            el.style.borderRight = '2px solid var(--primary)';
+            el.style.borderRight = '2px solid var(--accent)';
             
             let i = 0;
             const typing = setInterval(() => {

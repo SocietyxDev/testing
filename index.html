@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Codexboi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMORTAL | Login</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
-        
+        /* Base Styles */
         :root {
+            --primary: #ff0000;
+            --primary-dark: #cc0000;
+            --primary-light: #ff3333;
+            --dark-bg: #000000;
+            --darker-bg: #0a0a0a;
+            --text-light: #f1f1f1;
+            --text-dark: #111;
+            --accent-red: #ff0000;
+            --accent-black: #000;
+            --neon-glow: 0 0 10px var(--primary), 
+                         0 0 20px var(--primary), 
+                         0 0 30px var(--primary);
+            --transition: all 0.3s ease;
+            --font-main: 'Orbitron', sans-serif;
+            --font-secondary: 'Press Start 2P', cursive;
             --sidebar-width: 240px;
             --sidebar-collapsed-width: 70px;
             --sidebar-bg: rgba(20, 20, 30, 0.95);
@@ -17,22 +30,9 @@
             --sidebar-icon: #94a3b8;
             --sidebar-hover: rgba(255, 51, 102, 0.2);
             --content-bg: rgba(15, 15, 25, 0.9);
-            --primary: #ff3366;
-            --primary-hover: #e62e5c;
-            --text-dark: #f8f9fa;
-            --text-light: #adb5bd;
-            --transition: all 0.3s ease;
-            --dark-bg: #000000;
-            --neon-red: #ff3366;
-            --neon-glow: 0 0 10px var(--neon-red), 
-                         0 0 20px var(--neon-red), 
-                         0 0 30px var(--neon-red);
             --glass-border: 1px solid rgba(255, 255, 255, 0.15);
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             --glass-backdrop: blur(12px);
-            --font-game: 'Press Start 2P', cursive;
-            --font-dashboard: 'Orbitron', sans-serif;
-            --vip-blue: #00a8ff;
             --leaderboard-gold: #ffd700;
             --leaderboard-silver: #c0c0c0;
             --leaderboard-bronze: #cd7f32;
@@ -45,14 +45,36 @@
         }
 
         body {
-            min-height: 100vh;
+            font-family: var(--font-main);
             background-color: var(--dark-bg);
-            color: var(--text-dark);
-            font-family: var(--font-game);
-            overflow: hidden;
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Enhanced Star Background Animation */
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Font Imports */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+        /* Star Background */
         .stars {
             position: fixed;
             top: 0;
@@ -60,6 +82,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
+            overflow: hidden;
         }
 
         .star {
@@ -88,95 +111,149 @@
             100% { transform: translate(var(--tx), var(--ty)); }
         }
 
-        /* Login Page Styles */
+        /* New Login Page Design */
         .login-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: var(--dark-bg);
-            text-align: center;
-            font-family: var(--font-game);
+            min-height: 100vh;
+            padding: 2rem;
             position: relative;
             z-index: 1;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 0, 0, 0.1) 0%, 
+                rgba(0, 0, 0, 0.9) 70%);
         }
 
-        .login-content {
-            width: 100%;
-            max-width: 500px;
-            padding: 2rem;
-        }
-
-        .game-title {
-            font-size: 4rem;
-            font-weight: bold;
-            color: black;
+        .login-header {
+            text-align: center;
             margin-bottom: 3rem;
-            line-height: 1.2;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .login-title {
+            font-family: var(--font-secondary);
+            font-size: 4rem;
+            color: var(--primary);
+            text-shadow: var(--neon-glow);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            text-shadow: 2px 2px 0 var(--neon-red),
-                        -2px -2px 0 var(--neon-red),
-                        2px -2px 0 var(--neon-red),
-                        -2px 2px 0 var(--neon-red),
-                        0 0 15px var(--neon-red);
             animation: neon-pulse 1.5s infinite alternate;
-            font-family: var(--font-game);
         }
 
         @keyframes neon-pulse {
             from {
-                text-shadow: 2px 2px 0 var(--neon-red),
-                            -2px -2px 0 var(--neon-red),
-                            2px -2px 0 var(--neon-red),
-                            -2px 2px 0 var(--neon-red),
-                            0 0 15px var(--neon-red);
+                text-shadow: 0 0 5px var(--primary),
+                            0 0 10px var(--primary),
+                            0 0 15px var(--primary);
             }
             to {
-                text-shadow: 2px 2px 0 var(--neon-red),
-                            -2px -2px 0 var(--neon-red),
-                            2px -2px 0 var(--neon-red),
-                            -2px 2px 0 var(--neon-red),
-                            0 0 25px var(--neon-red),
-                            0 0 35px var(--neon-red);
+                text-shadow: 0 0 10px var(--primary),
+                            0 0 20px var(--primary),
+                            0 0 30px var(--primary),
+                            0 0 40px var(--primary);
             }
         }
 
-        /* Enhanced Discord Login Button */
+        .login-tagline {
+            font-size: 1rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-secondary);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ascii-art {
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            color: var(--primary);
+            margin: 2rem 0;
+            font-size: 0.6rem;
+            line-height: 1;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        /* Discord Login Button */
         .discord-login-btn {
-            background-color: transparent;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            border: 2px solid var(--primary);
-            padding: 16px 32px;
+            border: none;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            font-weight: 600;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            max-width: 300px;
+            gap: 10px;
             margin-top: 2rem;
-            font-family: var(--font-game);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5),
-                        inset 0 0 10px rgba(255, 51, 102, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
 
         .discord-login-btn:hover {
-            color: white;
             transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.8),
-                        inset 0 0 10px rgba(255, 51, 102, 0.5);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+        }
+
+        .discord-login-btn:active {
+            transform: translateY(1px);
         }
 
         .discord-login-btn::before {
@@ -189,7 +266,7 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(255, 51, 102, 0.4),
+                rgba(255, 255, 255, 0.2),
                 transparent
             );
             transition: 0.5s;
@@ -202,415 +279,133 @@
 
         .discord-login-btn i {
             font-size: 1.3rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .discord-login-btn:hover i {
             transform: scale(1.2);
-            color: #7289da;
-            text-shadow: 0 0 10px rgba(114, 137, 218, 0.8);
+        }
+
+        /* Footer */
+        .login-footer {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            opacity: 0.6;
+            text-align: center;
         }
 
         /* Dashboard Styles */
         .dashboard {
             display: none;
             background-color: var(--dark-bg);
-            font-family: var(--font-dashboard);
+            font-family: var(--font-main);
         }
 
-        /* Glass Theme Elements */
-        .sidebar, 
-        .main-content,
-        .profile-menu,
-        .notification-popup {
-            background: var(--sidebar-bg);
-            backdrop-filter: var(--glass-backdrop);
-            -webkit-backdrop-filter: var(--glass-backdrop);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            font-family: var(--font-dashboard);
-        }
-
-        /* Updated Notification System */
-        .notification-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .notification-btn {
-            background-color: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
-            border: none;
-            transition: var(--transition);
-            position: relative;
-            border: var(--glass-border);
-        }
-
-        .notification-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: var(--neon-red);
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
-        }
-
-        .notification-badge.hidden {
-            display: none;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .notification-popup {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 350px;
-            max-width: 90vw;
-            max-height: 60vh;
-            border-radius: 10px;
-            z-index: 1001;
-            overflow: hidden;
-            font-family: var(--font-dashboard);
-            transform: translateY(20px);
+        /* Scroll Effects */
+        .scroll-effect {
             opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
-        .notification-popup.show {
-            transform: translateY(0);
+        .scroll-effect.visible {
             opacity: 1;
-            pointer-events: all;
+            transform: translateY(0);
         }
 
-        .notification-header {
-            padding: 18px 20px;
-            background-color: var(--primary);
-            color: white;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: var(--glass-border);
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .notification-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .notification-content {
-            padding: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .notification-item {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .notification-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .notification-item:last-child {
-            border-bottom: none;
-        }
-
-        .notification-title {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-        }
-
-        .notification-time {
-            font-size: 0.8rem;
-            color: var(--text-light);
-        }
-
-        .notification-message {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .notification-footer {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .notification-nav-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-dashboard);
-            font-weight: 500;
-        }
-
-        .notification-nav-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .notification-nav-btn:disabled {
-            background-color: rgba(255, 51, 102, 0.5);
-            cursor: not-allowed;
-        }
-
-        /* New Notification Pages */
-        .notification-pages {
-            display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .notification-tab {
-            flex: 1;
-            text-align: center;
-            padding: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            border-bottom: 2px solid transparent;
-        }
-
-        .notification-tab.active {
-            border-bottom: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .notification-tab:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .notification-page {
-            display: none;
-        }
-
-        .notification-page.active {
-            display: block;
-        }
-
-        .overlay {
+        /* Inspect Element Block */
+        .inspect-blocker {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            display: none;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        /* Admin Notification Panel */
-        .admin-notification-panel {
-            background: rgba(255, 51, 102, 0.1);
-            border: 1px dashed var(--primary);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            display: none;
-        }
-
-        .admin-notification-panel h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .admin-notification-panel .form-group {
-            margin-bottom: 15px;
-        }
-
-        .admin-notification-panel .form-control {
             width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border: var(--glass-border);
-            border-radius: 5px;
-            color: var(--text-dark);
-            font-family: var(--font-dashboard);
-        }
-
-        .admin-notification-actions {
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .btn-admin {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-
-        .btn-admin:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-admin i {
-            font-size: 0.9rem;
-        }
-
-        /* Enhanced Profile Dropdown */
-        .profile-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .profile-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 60px;
-            min-width: 200px;
-            z-index: 100;
-            border-radius: 8px;
-            overflow: hidden;
-            transform-origin: top right;
-            font-family: var(--font-dashboard);
-        }
-
-        .profile-menu.show {
-            display: block;
-            animation: scaleIn 0.2s ease-out;
-        }
-
-        @keyframes scaleIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .profile-menu a {
-            color: var(--text-dark);
-            padding: 14px 20px;
-            text-decoration: none;
-            display: block;
-            transition: var(--transition);
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-        }
-
-        .profile-menu a:hover {
-            background-color: rgba(255, 51, 102, 0.2);
-        }
-
-        .profile-menu a.logout {
+            flex-direction: column;
             color: var(--primary);
-        }
-
-        .profile-menu a.logout:hover {
-            background-color: rgba(255, 51, 102, 0.3);
-        }
-
-        /* Admin specific styles */
-        .admin-badge {
-            margin-left: 5px;
-            font-size: 0.8rem;
-            position: relative;
-            top: -1px;
-        }
-
-        .admin-badge i {
-            filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.7));
-        }
-
-        .admin-indicator {
-            background: rgba(255, 215, 0, 0.1);
-            border-left: 3px solid gold;
-            padding-left: 17px !important;
-        }
-
-        .admin-only-message {
-            padding: 20px;
-            background: rgba(255, 51, 102, 0.1);
-            border: 1px dashed var(--primary);
-            border-radius: 8px;
+            font-family: var(--font-main);
             text-align: center;
-            margin-top: 30px;
-            color: var(--text-light);
+            padding: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
         }
 
-        /* VIP User Styles */
-        .vip-badge {
-            margin-left: 5px;
-            font-size: 0.8rem;
-            position: relative;
-            top: -1px;
+        .inspect-blocker.active {
+            transform: translateX(0);
         }
 
-        .vip-badge i {
-            color: var(--vip-blue);
-            filter: drop-shadow(0 0 2px rgba(0, 168, 255, 0.7));
+        .inspect-blocker h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px var(--primary);
         }
 
-        .vip-indicator {
-            background: rgba(0, 168, 255, 0.1);
-            border-left: 3px solid var(--vip-blue);
-            padding-left: 17px !important;
+        .inspect-blocker p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
-        /* Enhanced Sidebar Styles with Toggle */
+        .inspect-blocker .discord-btn {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .inspect-blocker .discord-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+        }
+
+        .inspect-blocker .discord-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* Wolf/Devil/Moon Theme Elements */
+        .moon-icon {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .wolf-icon {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ff0000" d="M50 10c-10 0-20 5-25 15-5-5-15-5-20 0-5 5-5 15 0 20 5 5 15 5 20 0 5 10 15 15 25 15s20-5 25-15c5 5 15 5 20 0 5-5 5-15 0-20-5-5-15-5-20 0-5-10-15-15-25-15z"/></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        /* Dashboard Components */
+        /* Sidebar Navigation */
         .sidebar {
             width: var(--sidebar-width);
             color: var(--sidebar-text);
@@ -618,8 +413,13 @@
             position: fixed;
             transition: var(--transition);
             overflow-y: auto;
-            font-family: var(--font-dashboard);
+            font-family: var(--font-main);
             z-index: 1000;
+            background: var(--sidebar-bg);
+            backdrop-filter: var(--glass-backdrop);
+            -webkit-backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
         }
 
         .sidebar.collapsed {
@@ -641,7 +441,7 @@
             padding: 12px 0;
         }
 
-        /* Fixed Sidebar Toggle Button */
+        /* Sidebar Toggle Button */
         .sidebar-toggle {
             position: absolute;
             right: -1px;
@@ -677,22 +477,7 @@
             transform: rotate(180deg);
         }
 
-        /* Retro IMMORTAL text in sidebar */
-        .sidebar-title span {
-            font-family: var(--font-game);
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        /* Retro IMMORTAL text in main content */
-        .game-title-retro {
-            font-family: var(--font-game);
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--neon-red);
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
+        /* Sidebar Content */
         .sidebar-header {
             padding: 20px;
             border-bottom: var(--glass-border);
@@ -765,20 +550,21 @@
             letter-spacing: 0.5px;
         }
 
-        /* Main Content Styles */
+        /* Main Content */
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
             min-height: 100vh;
             padding: 20px;
             transition: var(--transition);
-            font-family: var(--font-dashboard);
+            font-family: var(--font-main);
         }
 
         .sidebar.collapsed ~ .main-content {
             margin-left: var(--sidebar-collapsed-width);
         }
 
+        /* Content Header */
         .content-header {
             display: flex;
             justify-content: space-between;
@@ -816,24 +602,84 @@
             box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
         }
 
+        /* Profile Dropdown */
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 60px;
+            min-width: 200px;
+            z-index: 100;
+            border-radius: 8px;
+            overflow: hidden;
+            transform-origin: top right;
+            font-family: var(--font-main);
+            background: var(--sidebar-bg);
+            backdrop-filter: var(--glass-backdrop);
+            -webkit-backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .profile-menu.show {
+            display: block;
+            animation: scaleIn 0.2s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .profile-menu a {
+            color: var(--text-light);
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .profile-menu a:hover {
+            background-color: rgba(255, 51, 102, 0.2);
+        }
+
+        .profile-menu a.logout {
+            color: var(--primary);
+        }
+
+        .profile-menu a.logout:hover {
+            background-color: rgba(255, 51, 102, 0.3);
+        }
+
         /* Content Styles */
         .content {
-            background: rgba(15, 15, 25, 0.5);
+            background: var(--content-bg);
             padding: 20px;
             border-radius: 10px;
             border: var(--glass-border);
             box-shadow: var(--glass-shadow);
+            margin-bottom: 20px;
         }
 
         .content h2 {
             font-weight: 600;
             letter-spacing: 0.5px;
             margin-bottom: 15px;
+            color: var(--primary);
         }
 
         .content p {
             font-weight: 400;
             line-height: 1.6;
+            color: var(--text-light);
         }
 
         /* Dashboard Grid Layout */
@@ -842,12 +688,6 @@
             grid-template-columns: 1fr 300px;
             gap: 20px;
             margin-top: 20px;
-        }
-
-        @media (max-width: 1024px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         /* Discord Server Widget */
@@ -1080,7 +920,7 @@
 
         .change-avatar-btn {
             background-color: rgba(255, 51, 102, 0.2);
-            color: var(--text-dark);
+            color: var(--text-light);
             border: 1px dashed var(--primary);
             padding: 10px 15px;
             border-radius: 5px;
@@ -1117,8 +957,8 @@
             background-color: rgba(0, 0, 0, 0.3);
             border: var(--glass-border);
             border-radius: 5px;
-            color: var(--text-dark);
-            font-family: var(--font-dashboard);
+            color: var(--text-light);
+            font-family: var(--font-main);
             transition: var(--transition);
         }
 
@@ -1213,475 +1053,49 @@
             display: none;
             background: none;
             border: none;
-            color: var(--text-dark);
+            color: var(--text-light);
             font-size: 1.25rem;
             cursor: pointer;
         }
 
-        /* Video Tutorial Grid Styles */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .video-card {
-            background: rgba(15, 15, 25, 0.7);
-            border-radius: 8px;
-            overflow: hidden;
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
-        }
-
-        .video-thumbnail {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background-color: #000;
-            overflow: hidden;
-        }
-
-        .video-thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: var(--transition);
-        }
-
-        .video-card:hover .video-thumbnail img {
-            opacity: 1;
-        }
-
-        .video-thumbnail .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 3rem;
-            opacity: 0.8;
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            transition: var(--transition);
-        }
-
-        .video-card:hover .play-icon {
-            opacity: 1;
-            color: var(--primary);
-        }
-
-        .video-info {
-            padding: 15px;
-        }
-
-        .video-info h3 {
-            color: var(--primary);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .video-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .video-info .meta {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
-
-        /* Video Upload Form Styles */
-        .upload-section {
-            margin-top: 40px;
-            padding: 20px;
-            background: rgba(15, 15, 25, 0.5);
-            border-radius: 10px;
-            border: var(--glass-border);
-        }
-
-        .upload-section h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 51, 102, 0.3);
-            padding-bottom: 10px;
-        }
-
-        .upload-form .form-group {
-            margin-bottom: 15px;
-        }
-
-        .upload-form label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .upload-form input,
-        .upload-form textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.3);
-            border: var(--glass-border);
-            border-radius: 5px;
-            color: var(--text-dark);
-            font-family: var(--font-dashboard);
-        }
-
-        .upload-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .upload-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .video-upload-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            font-family: var(--font-dashboard);
-            font-weight: 500;
-        }
-
-        .video-upload-btn:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Custom Video Player Styles */
-        .video-modal-player {
-            position: relative;
-            width: 100%;
-            background: #000;
-        }
-
-        .video-modal-player video {
-            width: 100%;
-            display: block;
-        }
-
-        .video-controls {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            gap: 8px;
-            z-index: 10;
-            position: relative;
-        }
-
-        .video-modal-player.fullscreen .video-controls {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-        }
-
-        .control-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.9rem;
-        }
-
-        .control-btn:hover {
-            background: var(--primary-hover);
-        }
-
-        .time-display {
-            color: white;
-            font-family: var(--font-dashboard);
-            margin: 0 10px;
-        }
-
-        .progress-container {
-            flex-grow: 1;
-            min-width: 100px;
-        }
-
-        .progress-container input[type="range"] {
-            width: 100%;
-            height: 5px;
-            -webkit-appearance: none;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            outline: none;
-        }
-
-        .progress-container input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 15px;
-            height: 15px;
-            background: var(--primary);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Double tap detection */
-        .video-modal-player {
-            position: relative;
-        }
-
-        .video-modal-player .double-tap-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .video-modal-player .double-tap-overlay .tap-indicator {
-            font-size: 3rem;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        /* Video Modal Styles */
-        .video-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition);
-        }
-
-        .video-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .video-modal-content {
-            width: 80%;
-            max-width: 1000px;
-            position: relative;
-        }
-
-        .video-modal-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hits Grid Styles */
-        .hits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .hit-card {
-            background: rgba(15, 15, 25, 0.7);
-            border-radius: 8px;
-            padding: 20px;
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .hit-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
-        }
-
-        .hit-card h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .hit-link {
-            display: block;
-            color: var(--primary);
-            margin: 10px 0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .hit-link:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-        }
-
-        .hit-card .meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
-
-        .hit-status {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .hit-status.working {
-            color: #4caf50;
-        }
-
-        .hit-status.not-working {
-            color: #f44336;
-        }
-
-        .hit-platforms {
-            display: flex;
-            gap: 5px;
-            margin-top: 10px;
-        }
-
-        .platform-icon {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-        }
-
-        .hit-percentage {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: white;
-        }
-
-        /* Tools Grid Styles */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .tool-card {
-            background: rgba(15, 15, 25, 0.7);
-            border-radius: 8px;
-            padding: 20px;
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
-        }
-
-        .tool-card h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .tool-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .tool-link {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .tool-link:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Tutorials scroll fix */
-        .tutorials-content {
-            overflow-y: auto;
-            max-height: calc(100vh - 200px);
-            -webkit-overflow-scrolling: touch;
-            padding-right: 10px;
-        }
-
         /* Responsive Styles */
-        @media (max-width: 768px) {
-            .game-title {
-                font-size: 3rem;
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
             }
-            
+        }
+
+        @media (max-width: 768px) {
+            .login-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .stat-box {
+                padding: 1rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .ascii-art {
+                font-size: 0.5rem;
+            }
+
+            .discord-login-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .moon-icon, .wolf-icon {
+                display: none;
+            }
+
             .sidebar {
                 transform: translateX(-100%);
             }
@@ -1711,26 +1125,13 @@
                 width: 42px;
                 height: 42px;
             }
-            
-            .notification-popup {
-                width: 90%;
-                max-width: 350px;
-                max-height: 50vh;
-            }
 
-            .game-title-retro {
-                font-size: 1.5rem;
-            }
-
-            /* Mobile adjustments for sidebar toggle */
-            .sidebar-toggle {
-                right: -1px;
-                width: 32px;
-                height: 32px;
+            .profile-page {
+                left: 0;
             }
             
-            .sidebar-toggle i {
-                font-size: 1rem;
+            .sidebar.collapsed ~ .main-content .profile-page {
+                left: 0;
             }
 
             /* Profile page mobile adjustments */
@@ -1741,56 +1142,15 @@
             .avatar-section {
                 max-width: 100%;
             }
-            
-            .profile-page {
-                left: 0;
-            }
-            
-            .sidebar.collapsed ~ .main-content .profile-page {
-                left: 0;
-            }
-
-            /* Video grid adjustments */
-            .video-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            .video-modal-content {
-                width: 95%;
-            }
-
-            .upload-actions {
-                flex-direction: column;
-            }
-
-            /* Tutorials scroll fix */
-            .tutorials-content {
-                max-height: calc(100vh - 150px);
-            }
-
-            /* Video controls adjustments */
-            .video-controls {
-                padding: 8px;
-            }
-            
-            .control-btn {
-                padding: 6px 8px;
-                font-size: 0.8rem;
-            }
-
-            /* Dashboard grid adjustments */
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 480px) {
-            .game-title {
-                font-size: 2.2rem;
+            .login-title {
+                font-size: 2rem;
             }
-            
+
             .discord-login-btn {
-                padding: 14px 24px;
+                padding: 0.8rem 1.2rem;
                 font-size: 0.9rem;
             }
         }
@@ -1809,15 +1169,66 @@
     <!-- Star Background -->
     <div class="stars" id="stars"></div>
 
-    <!-- Login Page (shown by default) -->
+    <!-- Moon and Wolf Theme Elements -->
+    <div class="moon-icon"></div>
+    <div class="wolf-icon"></div>
+
+    <!-- Inspect Element Blocker -->
+    <div class="inspect-blocker" id="inspectBlocker">
+        <h2>ACCESS RESTRICTED</h2>
+        <p>Why waste time inspecting when you can join our elite community? Get exclusive access to premium tools and resources that will elevate your experience.</p>
+        <a href="https://discord.gg/immortal" target="_blank" class="discord-btn">
+            <i class="fab fa-discord"></i> Join Our Discord
+        </a>
+    </div>
+
+    <!-- Login Page -->
     <div class="login-container" id="loginPage">
-        <div class="login-content">
-            <h1 class="game-title">Codexboi</h1>
-            <button class="discord-login-btn" id="discordLogin">
-                <i class="fab fa-discord"></i>
-                CONTINUE WITH DISCORD
-            </button>
+        <div class="login-header scroll-effect">
+            <h1 class="login-title">IMMORTAL</h1>
+            <p class="login-tagline">At your service since 2021, soliciting over 2M logs</p>
         </div>
+
+        <div class="stats-container">
+            <div class="stat-box scroll-effect" style="transition-delay: 0.1s;">
+                <div class="stat-number">39,148</div>
+                <div class="stat-label">Total Users</div>
+            </div>
+            <div class="stat-box scroll-effect" style="transition-delay: 0.2s;">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Total Hits</div>
+            </div>
+        </div>
+
+        <div class="ascii-art scroll-effect" style="transition-delay: 0.3s;">
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+            ░░░░░░░░░░░░▓████████████████▓░░░░░░░░░░░
+            ░░░░░░░░░░▓████████████████████▓░░░░░░░░░
+            ░░░░░░░░▓████████████████████████▓░░░░░░░
+            ░░░░░░░████████████████████████████░░░░░░
+            ░░░░░░██████████████████████████████░░░░░
+            ░░░░░████████████████████████████████░░░░
+            ░░░░▓████████████████████████████████▓░░░
+            ░░░░██████████████████████████████████░░░
+            ░░░░██████████████████████████████████░░░
+            ░░░░▓████████████████████████████████▓░░░
+            ░░░░░████████████████████████████████░░░░
+            ░░░░░░██████████████████████████████░░░░░
+            ░░░░░░░████████████████████████████░░░░░░
+            ░░░░░░░░▓████████████████████████▓░░░░░░░
+            ░░░░░░░░░░▓████████████████████▓░░░░░░░░░
+            ░░░░░░░░░░░░▓████████████████▓░░░░░░░░░░░
+            ░░░░░░░░░░░░░░░▓██████████▓░░░░░░░░░░░░░░
+        </div>
+
+        <button class="discord-login-btn scroll-effect" id="discordLogin" style="transition-delay: 0.4s;">
+            <i class="fab fa-discord"></i>
+            LOGIN WITH DISCORD
+        </button>
+
+        <p class="login-footer scroll-effect" style="transition-delay: 0.5s;">
+            IMMORTAL &copy; 2021-2023 | All Rights Reserved
+        </p>
     </div>
 
     <!-- Dashboard (hidden until login) -->
@@ -1841,7 +1252,7 @@
                 <div class="notification-content" id="notificationContent">
                     <div class="notification-page active" id="generalNotifications">
                         <div class="notification-item">
-                            <div class="notification-title">Welcome to Codexboi</div>
+                            <div class="notification-title">Welcome to IMMORTAL</div>
                             <div class="notification-time">Just now</div>
                             <div class="notification-message">Thank you for joining our community!</div>
                         </div>
@@ -1850,7 +1261,7 @@
                         <div class="notification-item">
                             <div class="notification-title">New Update Available</div>
                             <div class="notification-time">Today</div>
-                            <div class="notification-message">bypasser 2.0 has been released with new features!</div>
+                            <div class="notification-message">Version 2.0 has been released with new features!</div>
                         </div>
                     </div>
                     <div class="notification-page" id="systemNotifications">
@@ -1882,7 +1293,7 @@
             <div class="sidebar-header">
                 <div class="sidebar-title">
                     <i class="fas fa-gamepad"></i>
-                    <span>Codexboi</span>
+                    <span>IMMORTAL</span>
                 </div>
             </div>
             <nav class="nav-menu">
@@ -1945,9 +1356,9 @@
 
             <!-- Dashboard Content (default) -->
             <div class="content" id="dashboardContent">
-                <h1 class="game-title-retro">Codexboi</h1>
+                <h1 class="game-title-retro">IMMORTAL</h1>
                 <h2>Welcome back, <span id="username">User</span>!</h2>
-                <p>This is your Dashboard.</p>
+                <p>This is your dark glass-themed dashboard with red accents.</p>
                 
                 <div class="dashboard-grid">
                     <div>
@@ -1955,7 +1366,7 @@
                         <div class="discord-widget">
                             <div class="discord-widget-header">
                                 <img src="https://cdn.discordapp.com/icons/123456789012345678/a_1234567890123456789012345678901234.webp?size=128" alt="Server Icon" class="discord-widget-icon">
-                                <div class="discord-widget-title">Codexboi Community</div>
+                                <div class="discord-widget-title">IMMORTAL Community</div>
                             </div>
                             <img src="https://cdn.discordapp.com/banners/123456789012345678/a_1234567890123456789012345678901234.webp?size=1024" alt="Server Banner" class="discord-widget-banner">
                             <p>Join our Discord community to get updates, support, and connect with other members.</p>
@@ -2057,14 +1468,14 @@
             <!-- New Hits Content -->
             <div class="content hidden" id="hitsContent">
                 <h1 class="game-title-retro">HITS</h1>
-                <h2>SItes </h2>
-                <p>domains</p>
+                <h2>Hits Management</h2>
+                <p>This section would display your hits management interface.</p>
                 
                 <div class="hits-grid">
                     <div class="hit-card" onclick="window.open('https://example.com/target1', '_blank')">
                         <span class="hit-status working">Working</span>
-                        <h3>www.robllox.cc</h3>
-                        <a href="https://example.com/target1" target="_blank" class="hit-link">click to open</a>
+                        <h3>Target Acquisition</h3>
+                        <a href="https://example.com/target1" target="_blank" class="hit-link">View Target Details</a>
                         <div class="meta">
                             <span>Status: Active</span>
                             <span>Priority: High</span>
@@ -2077,11 +1488,11 @@
                     </div>
                     <div class="hit-card" onclick="window.open('https://example.com/reports', '_blank')">
                         <span class="hit-status not-working">Not Working</span>
-                        <h3>www.web.roblox.net</h3>
-                        <a href="https://example.com/reports" target="_blank" class="hit-link">click to open</a>
+                        <h3>Mission Reports</h3>
+                        <a href="https://example.com/reports" target="_blank" class="hit-link">Access Reports</a>
                         <div class="meta">
-                            <span>Status: Active</span>
-                            <span>Priority: High</span>
+                            <span>Status: Archived</span>
+                            <span>Last Update: 2 days ago</span>
                         </div>
                         <div class="hit-platforms">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Chrome_icon_%28September_2014%29.svg" alt="Chrome" class="platform-icon">
@@ -2090,11 +1501,11 @@
                     </div>
                     <div class="hit-card" onclick="window.open('https://example.com/resources', '_blank')">
                         <span class="hit-status working">Working</span>
-                        <h3>www.roblox.kg</h3>
-                        <a href="https://example.com/resources" target="_blank" class="hit-link">click to open</a>
+                        <h3>Resource Allocation</h3>
+                        <a href="https://example.com/resources" target="_blank" class="hit-link">Manage Resources</a>
                         <div class="meta">
-                            <span>Status: Active</span>
-                            <span>Priority: High</span>
+                            <span>Status: Monitoring</span>
+                            <span>Resources: 5 available</span>
                         </div>
                         <div class="hit-platforms">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/TikTok_logo.svg" alt="TikTok" class="platform-icon">
@@ -2108,7 +1519,7 @@
             <div class="content tutorials-content hidden" id="tutorialsContent">
                 <h1 class="game-title-retro">TUTORIALS</h1>
                 <h2>Video Tutorials</h2>
-                <p>Watch and learn how to make phis.</p>
+                <p>Watch and learn from our collection of tutorial videos.</p>
                 
                 <div class="video-grid" id="videoGrid">
                     <div class="video-card" data-video-id="1">
@@ -2119,8 +1530,8 @@
                             </div>
                         </div>
                         <div class="video-info">
-                            <h3>Getting Started with Codexboi</h3>
-                            <p>Learn the  tiktok method.</p>
+                            <h3>Getting Started with IMMORTAL</h3>
+                            <p>Learn the basics of using our platform and its core features.</p>
                             <div class="meta">
                                 <span>4:32</span>
                                 <span>2023-05-15</span>
@@ -2135,8 +1546,8 @@
                             </div>
                         </div>
                         <div class="video-info">
-                            <h3>Codexboi </h3>
-                            <p>Codexboi</p>
+                            <h3>Advanced Hit Techniques</h3>
+                            <p>Master advanced techniques for maximum efficiency in your operations.</p>
                             <div class="meta">
                                 <span>7:45</span>
                                 <span>2023-06-02</span>
@@ -2151,8 +1562,8 @@
                             </div>
                         </div>
                         <div class="video-info">
-                            <h3>Codexboi</h3>
-                            <p>Codexboi</p>
+                            <h3>VIP Features Overview</h3>
+                            <p>Explore exclusive features available to VIP members.</p>
                             <div class="meta">
                                 <span>5:18</span>
                                 <span>2023-06-15</span>
@@ -2167,8 +1578,8 @@
                             </div>
                         </div>
                         <div class="video-info">
-                            <h3>Codexboi</h3>
-                            <p>Codexboi</p>
+                            <h3>Mobile Optimization Guide</h3>
+                            <p>Learn how to use IMMORTAL on mobile devices effectively.</p>
                             <div class="meta">
                                 <span>6:22</span>
                                 <span>2023-06-20</span>
@@ -2183,8 +1594,8 @@
                             </div>
                         </div>
                         <div class="video-info">
-                            <h3>Codexboi</h3>
-                            <p>Codexboi</p>
+                            <h3>Security Best Practices</h3>
+                            <p>Essential security tips to protect your operations.</p>
                             <div class="meta">
                                 <span>8:10</span>
                                 <span>2023-06-25</span>
@@ -2232,57 +1643,22 @@
                 </div>
             </div>
 
-            <!-- Video Modal -->
-            <div class="video-modal" id="videoModal">
-                <div class="video-modal-content">
-                    <button class="video-modal-close" id="videoModalClose">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <div class="video-modal-player">
-                        <video id="modalVideoPlayer"></video>
-                        <div class="video-controls">
-                            <button class="control-btn" id="playPauseBtn">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="control-btn" id="back5Btn">
-                                <i class="fas fa-backward"></i> 5s
-                            </button>
-                            <button class="control-btn" id="forward5Btn">
-                                5s <i class="fas fa-forward"></i>
-                            </button>
-                            <button class="control-btn" id="forward10Btn">
-                                10s <i class="fas fa-fast-forward"></i>
-                            </button>
-                            <div class="time-display">
-                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                            </div>
-                            <div class="progress-container">
-                                <input type="range" id="progressBar" min="0" max="100" value="0">
-                            </div>
-                            <button class="control-btn" id="fullscreenBtn">
-                                <i class="fas fa-expand"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Tools Content -->
             <div class="content hidden" id="toolsContent">
-                <h1 class="game-title-retro">Bypasser</h1>
+                <h1 class="game-title-retro">TOOLS</h1>
                 <h2>Available Tools</h2>
-                <p>Codexboi on top.</p>
+                <p>This section would display your available tools.</p>
                 <div class="tools-grid">
                     <div class="tool-card">
-                        <h3>Cookie Refresher</h3>
-                        <p>refresh cookie.</p>
+                        <h3>Hello Refresher</h3>
+                        <p>A tool to refresh and optimize your connections.</p>
                         <a href="https://example.com/hello-refresher" target="_blank" class="tool-link">
                             <i class="fas fa-external-link-alt"></i> Open Tool
                         </a>
                     </div>
                     <div class="tool-card">
-                        <h3>Age bypasser</h3>
-                        <p>changed age 13 + to under 13 </p>
+                        <h3>Gaurav Boy</h3>
+                        <p>Special utility for enhanced performance.</p>
                         <a href="https://example.com/gaurav-boy" target="_blank" class="tool-link">
                             <i class="fas fa-external-link-alt"></i> Open Tool
                         </a>
@@ -2293,8 +1669,8 @@
             <!-- Settings Content -->
             <div class="content hidden" id="settingsContent">
                 <h1 class="game-title-retro">SETTINGS</h1>
-                <h2>Codexboi</h2>
-                <p>Codexboi.</p>
+                <h2>Configuration Panel</h2>
+                <p>This section would display your settings options.</p>
                 <div class="settings-options">
                     <!-- Add your settings content here -->
                 </div>
@@ -2386,10 +1762,91 @@
             }
         }
 
+        // Block F12, Ctrl+Shift+I, right click, etc.
+        function setupInspectBlock() {
+            const blocker = document.getElementById('inspectBlocker');
+
+            // Show blocker when trying to inspect
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                    (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                    blocker.classList.add('active');
+                    
+                    // Auto-hide after 5 seconds
+                    setTimeout(() => {
+                        blocker.classList.remove('active');
+                    }, 5000);
+                }
+            });
+
+            // Block right click
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                blocker.classList.add('active');
+                
+                setTimeout(() => {
+                    blocker.classList.remove('active');
+                }, 5000);
+            });
+
+            // Block Ctrl+U
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'u') {
+                    e.preventDefault();
+                    blocker.classList.add('active');
+                    
+                    setTimeout(() => {
+                        blocker.classList.remove('active');
+                    }, 5000);
+                }
+            });
+        }
+
+        // Scroll animation effects
+        function setupScrollEffects() {
+            const scrollElements = document.querySelectorAll('.scroll-effect');
+            
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (
+                    elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+                );
+            };
+            
+            const displayScrollElement = (element) => {
+                element.classList.add('visible');
+            };
+            
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            };
+            
+            // Initialize by checking elements already in view
+            window.addEventListener('load', () => {
+                scrollElements.forEach((el) => {
+                    if (elementInView(el, 1.25)) {
+                        displayScrollElement(el);
+                    }
+                });
+            });
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', () => {
+                handleScrollAnimation();
+            });
+        }
+
         // Discord OAuth Configuration
-        const DISCORD_CLIENT_ID = "1362668406159048734";
+        const DISCORD_CLIENT_ID = "1355364009876127863";
         const DISCORD_REDIRECT_URI = window.location.href.includes('localhost') ? 
-            "http://localhost:8000" : "https://testing-ashy-zeta-55.vercel.app/";
+            "http://localhost:8000" : "https://immortalsite.vercel.app/";
         const DISCORD_SCOPES = ["identify"];
 
         // Admin Configuration - REPLACE THESE WITH YOUR DISCORD IDs
@@ -2405,23 +1862,23 @@
 
         // VIP Configuration - REPLACE THESE WITH YOUR DISCORD IDs
         const VIP_DISCORD_IDS = [
-            "1362654877506994298",             // VIP 1
+            "VIP_ID_1",             // VIP 1
             "VIP_ID_2",             // VIP 2
             "VIP_ID_3"              // VIP 3
         ];
 
         // Leaderboard Data
         const leaderboardData = [
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ },
-            { name: "Codexboi", hits: 999+ }
+            { name: "ShadowKiller", hits: 128 },
+            { name: "DarkPhoenix", hits: 97 },
+            { name: "GhostRider", hits: 85 },
+            { name: "NightWolf", hits: 72 },
+            { name: "StealthAssassin", hits: 68 },
+            { name: "CyberNinja", hits: 54 },
+            { name: "PhantomStrike", hits: 49 },
+            { name: "ViperVenom", hits: 42 },
+            { name: "SilentHunter", hits: 37 },
+            { name: "BlackWidow", hits: 31 }
         ];
 
         // DOM Elements
@@ -2457,9 +1914,6 @@
         const successMessage = document.getElementById('successMessage');
         const videoGrid = document.getElementById('videoGrid');
         const videoUploadForm = document.getElementById('videoUploadForm');
-        const videoModal = document.getElementById('videoModal');
-        const videoModalClose = document.getElementById('videoModalClose');
-        const modalVideoPlayer = document.getElementById('modalVideoPlayer');
         const uploadSection = document.getElementById('uploadSection');
         const nonAdminMessage = document.getElementById('nonAdminMessage');
         const adminNotificationPanel = document.getElementById('adminNotificationPanel');
@@ -2469,16 +1923,6 @@
         const notificationMessage = document.getElementById('notificationMessage');
         const notificationTime = document.getElementById('notificationTime');
         const leaderboardList = document.getElementById('leaderboardList');
-
-        // Video Player Controls
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const back5Btn = document.getElementById('back5Btn');
-        const forward5Btn = document.getElementById('forward5Btn');
-        const forward10Btn = document.getElementById('forward10Btn');
-        const progressBar = document.getElementById('progressBar');
-        const currentTimeDisplay = document.getElementById('currentTime');
-        const durationDisplay = document.getElementById('duration');
-        const fullscreenBtn = document.getElementById('fullscreenBtn');
 
         // Content Sections
         const dashboardContent = document.getElementById('dashboardContent');
@@ -2497,238 +1941,410 @@
         let currentNotificationTab = 'general';
         let notificationSocket = null;
 
-        // Video Tutorial System
-        let videos = [
-            {
-                id: '1',
-                title: 'Getting Started with IMMORTAL',
-                description: 'Learn the basics of using our platform and its core features.',
-                videoUrl: 'videos/tutorial1.mp4',
-                thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=IMMORTAL+Tutorial',
-                uploadDate: '2023-05-15',
-                duration: '4:32'
-            },
-            {
-                id: '2',
-                title: 'Advanced Hit Techniques',
-                description: 'Master advanced techniques for maximum efficiency in your operations.',
-                videoUrl: 'videos/tutorial1.mp4',
-                thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Advanced+Techniques',
-                uploadDate: '2023-06-02',
-                duration: '7:45'
-            },
-            {
-                id: '3',
-                title: 'VIP Features Overview',
-                description: 'Explore exclusive features available to VIP members.',
-                videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=VIP+Features',
-                uploadDate: '2023-06-15',
-                duration: '5:18'
-            },
-            {
-                id: '4',
-                title: 'Mobile Optimization Guide',
-                description: 'Learn how to use IMMORTAL on mobile devices effectively.',
-                videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Mobile+Guide',
-                uploadDate: '2023-06-20',
-                duration: '6:22'
-            },
-            {
-                id: '5',
-                title: 'Security Best Practices',
-                description: 'Essential security tips to protect your operations.',
-                videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Security+Tips',
-                uploadDate: '2023-06-25',
-                duration: '8:10'
-            }
-        ];
-
         // Initialize the app
         function init() {
             createStars();
-            checkExistingSession();
-            checkAuthResponse();
-            initDiscordLogin();
-            initSidebarToggle();
-            initMobileMenu();
-            initContentNavigation();
-            initProfile();
-            initVideoSystem();
-            setupVideoPlayer();
-            loadSavedVideos();
+            setupInspectBlock();
+            setupScrollEffects();
+            setupDiscordLogin();
+            setupSidebarToggle();
+            setupMobileMenu();
+            setupContentNavigation();
+            setupProfile();
             setupNotifications();
             setupAdminNotificationControls();
             setupLogout();
             renderLeaderboard();
             setupNotificationTabs();
+            
+            // Check for existing session
+            checkExistingSession();
         }
 
-        // Render leaderboard
-        function renderLeaderboard() {
-            leaderboardList.innerHTML = '';
+        // Setup Discord login
+        function setupDiscordLogin() {
+            discordLoginBtn.addEventListener('click', () => {
+                const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}&response_type=token&scope=${DISCORD_SCOPES.join('%20')}`;
+                window.location.href = authUrl;
+            });
             
-            leaderboardData.forEach((user, index) => {
-                const item = document.createElement('div');
-                item.className = `leaderboard-item ${index < 3 ? `top-${index + 1}` : ''}`;
+            // Check for auth response in URL
+            checkAuthResponse();
+        }
+
+        // Check for Discord auth response in URL
+        function checkAuthResponse() {
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const accessToken = params.get('access_token');
+            
+            if (accessToken) {
+                // Remove token from URL
+                window.history.pushState({}, document.title, window.location.pathname);
                 
-                item.innerHTML = `
-                    <span class="leaderboard-rank">${index + 1}</span>
-                    <span class="leaderboard-name">${user.name}</span>
-                    <span class="leaderboard-hits">${user.hits} hits</span>
-                `;
+                // Fetch user data
+                fetchDiscordUserData(accessToken);
+            }
+        }
+
+        // Fetch Discord user data
+        async function fetchDiscordUserData(token) {
+            try {
+                const response = await fetch('https://discord.com/api/users/@me', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 
-                leaderboardList.appendChild(item);
+                if (!response.ok) throw new Error('Failed to fetch user data');
+                
+                const userData = await response.json();
+                
+                // Store user data
+                localStorage.setItem('discordUser', JSON.stringify(userData));
+                
+                // Show dashboard with user data
+                showDashboard(userData);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                alert('Failed to login. Please try again.');
+            }
+        }
+
+        // Show dashboard with user data
+        function showDashboard(userData) {
+            loginPage.style.display = 'none';
+            dashboard.style.display = 'block';
+            
+            // Set user avatar
+            if (userData.avatar) {
+                const avatarUrl = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png?size=128`;
+                userAvatar.src = avatarUrl;
+                currentAvatar.src = avatarUrl;
+            } else {
+                // Default avatar if no Discord avatar
+                const defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${userData.discriminator % 5}.png`;
+                userAvatar.src = defaultAvatar;
+                currentAvatar.src = defaultAvatar;
+            }
+            
+            // Set username
+            usernameSpan.textContent = userData.username || 'User';
+            
+            // Check admin status
+            checkAdminStatus();
+        }
+
+        // Check admin status
+        function checkAdminStatus() {
+            const user = JSON.parse(localStorage.getItem('discordUser')) || {};
+            const isAdmin = ADMIN_DISCORD_IDS.includes(user.id);
+            const isVIP = VIP_DISCORD_IDS.includes(user.id);
+            
+            if (isAdmin) {
+                // Show admin sections
+                uploadSection.style.display = 'block';
+                nonAdminMessage.style.display = 'none';
+                adminNotificationPanel.classList.remove('hidden');
+                
+                // Add admin badge to profile
+                if (!profileBtn.querySelector('.admin-badge')) {
+                    const badge = document.createElement('span');
+                    badge.className = 'admin-badge';
+                    badge.innerHTML = ' <i class="fas fa-crown" style="color: gold;"></i>';
+                    badge.title = 'Administrator';
+                    profileBtn.appendChild(badge);
+                }
+                
+                // Add admin styling to profile menu
+                profileBtn.classList.add('admin-indicator');
+            } else if (isVIP) {
+                // Show VIP badge
+                if (!profileBtn.querySelector('.vip-badge')) {
+                    const badge = document.createElement('span');
+                    badge.className = 'vip-badge';
+                    badge.innerHTML = ' <i class="fas fa-gem"></i>';
+                    badge.title = 'VIP Member';
+                    profileBtn.appendChild(badge);
+                }
+                
+                // Add VIP styling to profile menu
+                profileBtn.classList.add('vip-indicator');
+                
+                // Hide admin sections
+                uploadSection.style.display = 'none';
+                nonAdminMessage.style.display = 'block';
+                adminNotificationPanel.classList.add('hidden');
+            } else {
+                // Hide admin sections
+                uploadSection.style.display = 'none';
+                nonAdminMessage.style.display = 'block';
+                adminNotificationPanel.classList.add('hidden');
+                
+                // Remove admin badge if exists
+                const adminBadge = document.querySelector('.admin-badge');
+                if (adminBadge) adminBadge.remove();
+                
+                // Remove VIP badge if exists
+                const vipBadge = document.querySelector('.vip-badge');
+                if (vipBadge) vipBadge.remove();
+                
+                // Remove admin styling
+                profileBtn.classList.remove('admin-indicator');
+                profileBtn.classList.remove('vip-indicator');
+            }
+        }
+
+        // Sidebar Toggle Functionality
+        function setupSidebarToggle() {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('collapsed');
+                
+                // Store sidebar state in localStorage
+                const isCollapsed = sidebar.classList.contains('collapsed');
+                localStorage.setItem('sidebarCollapsed', isCollapsed);
+            });
+            
+            // Check for saved sidebar state
+            const savedState = localStorage.getItem('sidebarCollapsed');
+            if (savedState === 'true') {
+                sidebar.classList.add('collapsed');
+            }
+        }
+
+        // Mobile Menu Toggle Functionality
+        function setupMobileMenu() {
+            function checkScreenSize() {
+                if (window.innerWidth <= 768) {
+                    mobileMenuToggle.classList.remove('hidden');
+                    sidebar.classList.remove('collapsed');
+                } else {
+                    mobileMenuToggle.classList.add('hidden');
+                }
+            }
+
+            // Initial check
+            checkScreenSize();
+
+            // Check on resize
+            window.addEventListener('resize', checkScreenSize);
+
+            // Toggle sidebar
+            mobileMenuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
             });
         }
 
-        // Setup notification tabs
-        function setupNotificationTabs() {
-            const tabs = document.querySelectorAll('.notification-tab');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs
-                    tabs.forEach(t => t.classList.remove('active'));
+        // Navigation between dashboard sections
+        function setupContentNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navItems = document.querySelectorAll('.nav-item');
+            const pageTitle = document.querySelector('.page-title');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
                     
-                    // Add active class to clicked tab
-                    this.classList.add('active');
+                    // Remove active class from all nav items
+                    navItems.forEach(item => item.classList.remove('active'));
                     
-                    // Set current tab
-                    currentNotificationTab = this.dataset.tab;
+                    // Add active class to clicked item's parent
+                    this.parentElement.classList.add('active');
                     
-                    // Update notification display
-                    updateNotificationDisplay();
+                    // Get which section to show from the link's text
+                    const sectionText = this.querySelector('span').textContent.toLowerCase();
+                    
+                    // Hide all content sections
+                    dashboardContent.classList.add('hidden');
+                    hitsContent.classList.add('hidden');
+                    tutorialsContent.classList.add('hidden');
+                    toolsContent.classList.add('hidden');
+                    settingsContent.classList.add('hidden');
+                    
+                    // Show the selected section and update page title
+                    switch(sectionText) {
+                        case 'hits':
+                            hitsContent.classList.remove('hidden');
+                            pageTitle.textContent = 'Hits';
+                            break;
+                        case 'tutorials':
+                            tutorialsContent.classList.remove('hidden');
+                            pageTitle.textContent = 'Tutorials';
+                            break;
+                        case 'tools':
+                            toolsContent.classList.remove('hidden');
+                            pageTitle.textContent = 'Tools';
+                            break;
+                        case 'settings':
+                            settingsContent.classList.remove('hidden');
+                            pageTitle.textContent = 'Settings';
+                            break;
+                        default: // dashboard
+                            dashboardContent.classList.remove('hidden');
+                            pageTitle.textContent = 'Dashboard';
+                            break;
+                    }
+                    
+                    // Close sidebar on mobile after selection
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                    }
                 });
             });
         }
 
-        // Custom Video Player Functionality
-        function setupVideoPlayer() {
-            // Double tap functionality
-            let lastTap = 0;
-            modalVideoPlayer.addEventListener('click', function(e) {
-                const currentTime = new Date().getTime();
-                const tapLength = currentTime - lastTap;
+        // Profile functionality
+        function setupProfile() {
+            // Enhanced Profile Dropdown
+            userAvatar.addEventListener('click', function(e) {
+                e.stopPropagation();
+                profileMenu.classList.toggle('show');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.profile-dropdown') && profileMenu.classList.contains('show')) {
+                    profileMenu.classList.remove('show');
+                }
+            });
+
+            // Profile button click handler
+            profileBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                profileMenu.classList.remove('show');
                 
-                if (tapLength < 300 && tapLength > 0) {
-                    // Double tap detected
-                    if (e.clientX > window.innerWidth / 2) {
-                        // Right side - forward 10s
-                        modalVideoPlayer.currentTime += 10;
-                    } else {
-                        // Left side - back 10s
-                        modalVideoPlayer.currentTime = Math.max(0, modalVideoPlayer.currentTime - 10);
-                    }
-                    
-                    // Show visual feedback
-                    showTapFeedback(e.clientX > window.innerWidth / 2 ? 'forward' : 'backward');
+                // Hide sidebar on mobile when opening profile
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
                 }
                 
-                lastTap = currentTime;
+                // Show profile page with animation
+                profilePage.classList.add('show');
+                
+                // Load current profile data
+                loadProfileData();
             });
-            
-            function showTapFeedback(direction) {
-                const overlay = document.createElement('div');
-                overlay.className = 'double-tap-overlay';
+
+            // Back to dashboard button
+            backToDashboard.addEventListener('click', function() {
+                profilePage.classList.remove('show');
+                profilePage.classList.add('hide');
                 
-                const indicator = document.createElement('div');
-                indicator.className = 'tap-indicator';
-                indicator.innerHTML = direction === 'forward' ? 
-                    '<i class="fas fa-forward"></i> +10s' : 
-                    '<i class="fas fa-backward"></i> -10s';
+                // Show sidebar again on mobile when closing profile
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.add('active');
+                }
                 
-                overlay.appendChild(indicator);
-                modalVideoPlayer.parentNode.appendChild(overlay);
-                
-                // Show then fade out
+                // Remove hide class after animation completes
                 setTimeout(() => {
-                    indicator.style.opacity = '1';
-                    setTimeout(() => {
-                        indicator.style.opacity = '0';
-                        setTimeout(() => {
-                            overlay.remove();
-                        }, 300);
-                    }, 500);
-                }, 10);
-            }
-            
-            // Play/Pause
-            playPauseBtn.addEventListener('click', function() {
-                if (modalVideoPlayer.paused) {
-                    modalVideoPlayer.play();
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                } else {
-                    modalVideoPlayer.pause();
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    profilePage.classList.remove('hide');
+                }, 300);
+            });
+
+            // Change avatar
+            changeAvatarBtn.addEventListener('click', function() {
+                avatarUpload.click();
+            });
+
+            avatarUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        currentAvatar.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
                 }
             });
-            
-            // Skip buttons
-            back5Btn.addEventListener('click', () => {
-                modalVideoPlayer.currentTime = Math.max(0, modalVideoPlayer.currentTime - 5);
-            });
-            
-            forward5Btn.addEventListener('click', () => {
-                modalVideoPlayer.currentTime += 5;
-            });
-            
-            forward10Btn.addEventListener('click', () => {
-                modalVideoPlayer.currentTime += 10;
-            });
-            
-            // Progress bar
-            modalVideoPlayer.addEventListener('timeupdate', function() {
-                const percent = (modalVideoPlayer.currentTime / modalVideoPlayer.duration) * 100;
-                progressBar.value = percent || 0;
+
+            // Save profile
+            saveProfileBtn.addEventListener('click', function() {
+                const profileData = {
+                    avatar: currentAvatar.src,
+                    nickname: nicknameInput.value,
+                    discordWebhook: discordWebhookInput.value
+                };
                 
-                // Update time display
-                currentTimeDisplay.textContent = formatTime(modalVideoPlayer.currentTime);
-            });
-            
-            progressBar.addEventListener('input', function() {
-                const seekTime = (progressBar.value / 100) * modalVideoPlayer.duration;
-                modalVideoPlayer.currentTime = seekTime;
-            });
-            
-            // Duration display
-            modalVideoPlayer.addEventListener('loadedmetadata', function() {
-                durationDisplay.textContent = formatTime(modalVideoPlayer.duration);
-            });
-            
-            // Fullscreen
-            fullscreenBtn.addEventListener('click', function() {
-                const playerContainer = modalVideoPlayer.parentNode;
+                localStorage.setItem('profileData', JSON.stringify(profileData));
                 
-                if (!document.fullscreenElement) {
-                    if (playerContainer.requestFullscreen) {
-                        playerContainer.requestFullscreen();
-                    } else if (playerContainer.webkitRequestFullscreen) {
-                        playerContainer.webkitRequestFullscreen();
-                    } else if (playerContainer.msRequestFullscreen) {
-                        playerContainer.msRequestFullscreen();
-                    }
-                    playerContainer.classList.add('fullscreen');
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    }
-                    playerContainer.classList.remove('fullscreen');
+                // Update avatar in dashboard if changed
+                if (profileData.avatar && profileData.avatar.startsWith('data:')) {
+                    userAvatar.src = profileData.avatar;
                 }
+
+                // Update username if changed
+                if (profileData.nickname) {
+                    usernameSpan.textContent = profileData.nickname;
+                }
+                
+                // Show success popup
+                showSuccessMessage("Profile saved successfully!");
             });
+        }
+
+        // Load profile data from localStorage
+        function loadProfileData() {
+            const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+            const discordUser = JSON.parse(localStorage.getItem('discordUser'));
             
-            // Format time as MM:SS
-            function formatTime(seconds) {
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            // Set current avatar
+            if (profileData.avatar) {
+                currentAvatar.src = profileData.avatar;
+            } else if (discordUser?.avatar) {
+                currentAvatar.src = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png?size=128`;
+            } else {
+                currentAvatar.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
             }
+            
+            // Set nickname (default to Discord username if available)
+            nicknameInput.value = profileData.nickname || discordUser?.username || '';
+            
+            // Set webhook if exists
+            discordWebhookInput.value = profileData.discordWebhook || '';
+        }
+
+        // Success popup button handler
+        function showSuccessMessage(message) {
+            successMessage.textContent = message;
+            successPopup.classList.add('show');
+            overlay.classList.add('show');
+            
+            setTimeout(() => {
+                successPopup.classList.remove('show');
+                overlay.classList.remove('show');
+            }, 3000);
+        }
+
+        // Updated logout functionality (preserves profile data)
+        function setupLogout() {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get current profile data before logout
+                const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
+                const discordUser = JSON.parse(localStorage.getItem('discordUser'));
+                
+                // Clear only authentication data
+                localStorage.removeItem('discordUser'); 
+                
+                // Restore profile data (without sensitive info)
+                if (discordUser && discordUser.id) {
+                    profileData.userId = discordUser.id; // Store for matching later
+                    localStorage.setItem('profileData', JSON.stringify(profileData));
+                }
+                
+                // Reset UI
+                dashboard.style.display = 'none';
+                loginPage.style.display = 'flex';
+                userAvatar.src = '';
+                usernameSpan.textContent = 'User';
+                
+                // Close all popups
+                notificationPopup.classList.remove('show');
+                overlay.classList.remove('show');
+                profilePage.style.display = 'none';
+                successPopup.classList.remove('show');
+            });
         }
 
         // Notification System Functions
@@ -2889,560 +2505,43 @@
             notificationTime.value = 'Just now';
         }
 
-        // Admin and VIP Functions
-        function checkAdminStatus() {
-            const user = JSON.parse(localStorage.getItem('discordUser')) || {};
-            const isAdmin = ADMIN_DISCORD_IDS.includes(user.id);
-            const isVIP = VIP_DISCORD_IDS.includes(user.id);
+        // Render leaderboard
+        function renderLeaderboard() {
+            leaderboardList.innerHTML = '';
             
-            if (isAdmin) {
-                // Show admin sections
-                uploadSection.style.display = 'block';
-                nonAdminMessage.style.display = 'none';
-                adminNotificationPanel.classList.remove('hidden');
+            leaderboardData.forEach((user, index) => {
+                const item = document.createElement('div');
+                item.className = `leaderboard-item ${index < 3 ? `top-${index + 1}` : ''}`;
                 
-                // Add admin badge to profile
-                if (!profileBtn.querySelector('.admin-badge')) {
-                    const badge = document.createElement('span');
-                    badge.className = 'admin-badge';
-                    badge.innerHTML = ' <i class="fas fa-crown" style="color: gold;"></i>';
-                    badge.title = 'Administrator';
-                    profileBtn.appendChild(badge);
-                }
-                
-                // Add admin styling to profile menu
-                profileBtn.classList.add('admin-indicator');
-            } else if (isVIP) {
-                // Show VIP badge
-                if (!profileBtn.querySelector('.vip-badge')) {
-                    const badge = document.createElement('span');
-                    badge.className = 'vip-badge';
-                    badge.innerHTML = ' <i class="fas fa-gem"></i>';
-                    badge.title = 'VIP Member';
-                    profileBtn.appendChild(badge);
-                }
-                
-                // Add VIP styling to profile menu
-                profileBtn.classList.add('vip-indicator');
-                
-                // Hide admin sections
-                uploadSection.style.display = 'none';
-                nonAdminMessage.style.display = 'block';
-                adminNotificationPanel.classList.add('hidden');
-            } else {
-                // Hide admin sections
-                uploadSection.style.display = 'none';
-                nonAdminMessage.style.display = 'block';
-                adminNotificationPanel.classList.add('hidden');
-                
-                // Remove admin badge if exists
-                const adminBadge = document.querySelector('.admin-badge');
-                if (adminBadge) adminBadge.remove();
-                
-                // Remove VIP badge if exists
-                const vipBadge = document.querySelector('.vip-badge');
-                if (vipBadge) vipBadge.remove();
-                
-                // Remove admin styling
-                profileBtn.classList.remove('admin-indicator');
-                profileBtn.classList.remove('vip-indicator');
-            }
-        }
-
-        // Video System Functions
-        function initVideoSystem() {
-            renderVideoGrid();
-            setupVideoEventListeners();
-        }
-
-        function renderVideoGrid() {
-            videoGrid.innerHTML = '';
-            
-            if (videos.length === 0) {
-                videoGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No tutorial videos available yet.</p>';
-                return;
-            }
-            
-            videos.forEach(video => {
-                const videoCard = document.createElement('div');
-                videoCard.className = 'video-card';
-                videoCard.dataset.videoId = video.id;
-                
-                videoCard.innerHTML = `
-                    <div class="video-thumbnail">
-                        <img src="${video.thumbnailUrl}" alt="${video.title}">
-                        <div class="play-icon">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h3>${video.title}</h3>
-                        <p>${video.description}</p>
-                        <div class="meta">
-                            <span>${video.duration}</span>
-                            <span>${video.uploadDate}</span>
-                        </div>
-                    </div>
+                item.innerHTML = `
+                    <span class="leaderboard-rank">${index + 1}</span>
+                    <span class="leaderboard-name">${user.name}</span>
+                    <span class="leaderboard-hits">${user.hits} hits</span>
                 `;
                 
-                videoGrid.appendChild(videoCard);
+                leaderboardList.appendChild(item);
             });
         }
 
-        function setupVideoEventListeners() {
-            // Video card clicks
-            videoGrid.addEventListener('click', (e) => {
-                const videoCard = e.target.closest('.video-card');
-                if (videoCard) {
-                    const videoId = videoCard.dataset.videoId;
-                    const video = videos.find(v => v.id === videoId);
-                    if (video) {
-                        playVideo(video);
-                    }
-                }
-            });
+        // Setup notification tabs
+        function setupNotificationTabs() {
+            const tabs = document.querySelectorAll('.notification-tab');
             
-            // Modal close
-            videoModalClose.addEventListener('click', closeVideoModal);
-            
-            // Form submission
-            videoUploadForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                uploadVideo();
-            });
-            
-            // Close modal when clicking outside
-            videoModal.addEventListener('click', (e) => {
-                if (e.target === videoModal) {
-                    closeVideoModal();
-                }
-            });
-        }
-
-        function playVideo(video) {
-            modalVideoPlayer.src = video.videoUrl;
-            modalVideoPlayer.poster = video.thumbnailUrl;
-            videoModal.classList.add('active');
-            modalVideoPlayer.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        }
-
-        function closeVideoModal() {
-            videoModal.classList.remove('active');
-            modalVideoPlayer.pause();
-            modalVideoPlayer.currentTime = 0;
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        }
-
-        function uploadVideo() {
-            const title = document.getElementById('videoTitle').value;
-            const description = document.getElementById('videoDescription').value;
-            const videoFile = document.getElementById('videoFile').files[0];
-            const thumbnailFile = document.getElementById('videoThumbnail').files[0];
-            
-            if (!title || !description || !videoFile) {
-                showSuccessMessage('Please fill in all required fields');
-                return;
-            }
-            
-            // Create file readers for both files
-            const videoReader = new FileReader();
-            const thumbnailReader = thumbnailFile ? new FileReader() : null;
-            
-            videoReader.onload = function(e) {
-                const videoData = {
-                    id: Date.now().toString(),
-                    title,
-                    description,
-                    videoUrl: e.target.result,
-                    thumbnailUrl: '',
-                    uploadDate: new Date().toLocaleDateString(),
-                    duration: '0:00'
-                };
-                
-                if (thumbnailReader) {
-                    thumbnailReader.onload = function(e) {
-                        videoData.thumbnailUrl = e.target.result;
-                        completeVideoUpload(videoData);
-                    };
-                    thumbnailReader.readAsDataURL(thumbnailFile);
-                } else {
-                    // Use default thumbnail if none provided
-                    videoData.thumbnailUrl = 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=' + encodeURIComponent(title);
-                    completeVideoUpload(videoData);
-                }
-            };
-            
-            videoReader.readAsDataURL(videoFile);
-        }
-
-        function completeVideoUpload(videoData) {
-            // Get existing videos or initialize array
-            let allVideos = JSON.parse(localStorage.getItem('allVideos')) || [];
-            
-            // Add new video
-            allVideos.unshift(videoData);
-            
-            // Save back to localStorage
-            localStorage.setItem('allVideos', JSON.stringify(allVideos));
-            
-            // Update local videos array and render
-            videos = allVideos;
-            renderVideoGrid();
-            
-            // Reset form
-            videoUploadForm.reset();
-            
-            // Show success message
-            showSuccessMessage('Video uploaded successfully!');
-        }
-
-        function loadSavedVideos() {
-            const savedVideos = localStorage.getItem('allVideos');
-            if (savedVideos) {
-                videos = JSON.parse(savedVideos);
-                renderVideoGrid();
-            }
-        }
-
-        // Enhanced Profile Dropdown
-        userAvatar.addEventListener('click', function(e) {
-            e.stopPropagation();
-            profileMenu.classList.toggle('show');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.profile-dropdown') && profileMenu.classList.contains('show')) {
-                profileMenu.classList.remove('show');
-            }
-        });
-
-        // Profile functionality
-        profileBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            profileMenu.classList.remove('show');
-            
-            // Hide sidebar on mobile when opening profile
-            if (window.innerWidth <= 768) {
-                sidebar.classList.remove('active');
-            }
-            
-            // Show profile page with animation
-            profilePage.classList.add('show');
-            
-            // Load current profile data
-            loadProfileData();
-        });
-
-        backToDashboard.addEventListener('click', function() {
-            profilePage.classList.remove('show');
-            profilePage.classList.add('hide');
-            
-            // Show sidebar again on mobile when closing profile
-            if (window.innerWidth <= 768) {
-                sidebar.classList.add('active');
-            }
-            
-            // Remove hide class after animation completes
-            setTimeout(() => {
-                profilePage.classList.remove('hide');
-            }, 300);
-        });
-
-        // Load profile data from localStorage
-        function loadProfileData() {
-            const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
-            const discordUser = JSON.parse(localStorage.getItem('discordUser'));
-            
-            // Set current avatar
-            if (profileData.avatar) {
-                currentAvatar.src = profileData.avatar;
-            } else if (discordUser?.avatar) {
-                currentAvatar.src = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png?size=128`;
-            } else {
-                currentAvatar.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
-            }
-            
-            // Set nickname (default to Discord username if available)
-            nicknameInput.value = profileData.nickname || discordUser?.username || '';
-            
-            // Set webhook if exists
-            discordWebhookInput.value = profileData.discordWebhook || '';
-        }
-
-        // Change avatar
-        changeAvatarBtn.addEventListener('click', function() {
-            avatarUpload.click();
-        });
-
-        avatarUpload.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    currentAvatar.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Save profile
-        saveProfileBtn.addEventListener('click', function() {
-            const profileData = {
-                avatar: currentAvatar.src,
-                nickname: nicknameInput.value,
-                discordWebhook: discordWebhookInput.value
-            };
-            
-            localStorage.setItem('profileData', JSON.stringify(profileData));
-            
-            // Update avatar in dashboard if changed
-            if (profileData.avatar && profileData.avatar.startsWith('data:')) {
-                userAvatar.src = profileData.avatar;
-            }
-
-            // Update username if changed
-            if (profileData.nickname) {
-                usernameSpan.textContent = profileData.nickname;
-            }
-            
-            // Show success popup
-            showSuccessMessage("Profile saved successfully!");
-        });
-
-        // Success popup button handler
-        successPopupBtn.addEventListener('click', function() {
-            successPopup.classList.remove('show');
-            overlay.classList.remove('show');
-        });
-
-        function showSuccessMessage(message) {
-            successMessage.textContent = message;
-            successPopup.classList.add('show');
-            overlay.classList.add('show');
-            
-            setTimeout(() => {
-                successPopup.classList.remove('show');
-                overlay.classList.remove('show');
-            }, 3000);
-        }
-
-        // Updated logout functionality (preserves profile data)
-        function setupLogout() {
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Get current profile data before logout
-                const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
-                const discordUser = JSON.parse(localStorage.getItem('discordUser'));
-                
-                // Clear only authentication data
-                localStorage.removeItem('discordUser'); 
-                
-                // Restore profile data (without sensitive info)
-                if (discordUser && discordUser.id) {
-                    profileData.userId = discordUser.id; // Store for matching later
-                    localStorage.setItem('profileData', JSON.stringify(profileData));
-                }
-                
-                // Reset UI
-                dashboard.style.display = 'none';
-                loginPage.style.display = 'flex';
-                userAvatar.src = '';
-                usernameSpan.textContent = 'User';
-                
-                // Close all popups
-                notificationPopup.classList.remove('show');
-                overlay.classList.remove('show');
-                profilePage.style.display = 'none';
-                successPopup.classList.remove('show');
-                videoModal.classList.remove('active');
-            });
-        }
-
-        // Sidebar Toggle Functionality
-        function initSidebarToggle() {
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('collapsed');
-                
-                // Store sidebar state in localStorage
-                const isCollapsed = sidebar.classList.contains('collapsed');
-                localStorage.setItem('sidebarCollapsed', isCollapsed);
-            });
-            
-            // Check for saved sidebar state
-            const savedState = localStorage.getItem('sidebarCollapsed');
-            if (savedState === 'true') {
-                sidebar.classList.add('collapsed');
-            }
-        }
-
-        // Mobile Menu Toggle Functionality
-        function initMobileMenu() {
-            function checkScreenSize() {
-                if (window.innerWidth <= 768) {
-                    mobileMenuToggle.classList.remove('hidden');
-                    sidebar.classList.remove('collapsed');
-                } else {
-                    mobileMenuToggle.classList.add('hidden');
-                }
-            }
-
-            // Initial check
-            checkScreenSize();
-
-            // Check on resize
-            window.addEventListener('resize', checkScreenSize);
-
-            // Toggle sidebar
-            mobileMenuToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-            });
-        }
-
-        // Navigation between dashboard sections
-        function initContentNavigation() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const navItems = document.querySelectorAll('.nav-item');
-            const pageTitle = document.querySelector('.page-title');
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
                     
-                    // Remove active class from all nav items
-                    navItems.forEach(item => item.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
                     
-                    // Add active class to clicked item's parent
-                    this.parentElement.classList.add('active');
+                    // Set current tab
+                    currentNotificationTab = this.dataset.tab;
                     
-                    // Get which section to show from the link's text
-                    const sectionText = this.querySelector('span').textContent.toLowerCase();
-                    
-                    // Hide all content sections
-                    dashboardContent.classList.add('hidden');
-                    hitsContent.classList.add('hidden');
-                    tutorialsContent.classList.add('hidden');
-                    toolsContent.classList.add('hidden');
-                    settingsContent.classList.add('hidden');
-                    
-                    // Show the selected section and update page title
-                    switch(sectionText) {
-                        case 'hits':
-                            hitsContent.classList.remove('hidden');
-                            pageTitle.textContent = 'Hits';
-                            break;
-                        case 'tutorials':
-                            tutorialsContent.classList.remove('hidden');
-                            pageTitle.textContent = 'Tutorials';
-                            break;
-                        case 'tools':
-                            toolsContent.classList.remove('hidden');
-                            pageTitle.textContent = 'Tools';
-                            break;
-                        case 'settings':
-                            settingsContent.classList.remove('hidden');
-                            pageTitle.textContent = 'Settings';
-                            break;
-                        default: // dashboard
-                            dashboardContent.classList.remove('hidden');
-                            pageTitle.textContent = 'Dashboard';
-                            break;
-                    }
-                    
-                    // Close sidebar on mobile after selection
-                    if (window.innerWidth <= 768) {
-                        sidebar.classList.remove('active');
-                    }
+                    // Update notification display
+                    updateNotificationDisplay();
                 });
             });
-        }
-
-        // Check for Discord auth response in URL
-        function checkAuthResponse() {
-            const hash = window.location.hash.substring(1);
-            const params = new URLSearchParams(hash);
-            const accessToken = params.get('access_token');
-            
-            if (accessToken) {
-                // Remove token from URL
-                window.history.pushState({}, document.title, window.location.pathname);
-                
-                // Fetch user data
-                fetchDiscordUserData(accessToken);
-            }
-        }
-
-        // Fetch Discord user data
-        async function fetchDiscordUserData(token) {
-            try {
-                const response = await fetch('https://discord.com/api/users/@me', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                
-                if (!response.ok) throw new Error('Failed to fetch user data');
-                
-                const userData = await response.json();
-                
-                // Store user data
-                localStorage.setItem('discordUser', JSON.stringify(userData));
-                
-                // Show dashboard with user data
-                showDashboard(userData);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-                alert('Failed to login. Please try again.');
-            }
-        }
-
-        // Show dashboard with user data
-        function showDashboard(userData) {
-            loginPage.style.display = 'none';
-            dashboard.style.display = 'block';
-            
-            // Set user avatar
-            if (userData.avatar) {
-                const avatarUrl = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png?size=128`;
-                userAvatar.src = avatarUrl;
-            } else {
-                // Default avatar if no Discord avatar
-                const defaultAvatar = `https://cdn.discordapp.com/embed/avatars/${userData.discriminator % 5}.png`;
-                userAvatar.src = defaultAvatar;
-            }
-            
-            // Set username
-            const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
-            usernameSpan.textContent = profileData.nickname || userData.username || 'User';
-            
-            // Check admin status
-            checkAdminStatus();
-        }
-
-        // Initialize profile data when dashboard loads
-        function initProfile() {
-            const storedUser = localStorage.getItem('discordUser');
-            if (storedUser) {
-                const userData = JSON.parse(storedUser);
-                const profileData = JSON.parse(localStorage.getItem('profileData')) || {};
-                
-                // Set initial avatar
-                if (profileData.avatar) {
-                    userAvatar.src = profileData.avatar;
-                } else if (userData.avatar) {
-                    userAvatar.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png?size=128`;
-                } else {
-                    userAvatar.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
-                }
-                
-                // Set initial username
-                usernameSpan.textContent = profileData.nickname || userData.username || 'User';
-                
-                // Check admin status
-                checkAdminStatus();
-            }
         }
 
         // Check for existing session on page load
@@ -3451,14 +2550,6 @@
             if (storedUser) {
                 showDashboard(JSON.parse(storedUser));
             }
-        }
-
-        // Initialize Discord login
-        function initDiscordLogin() {
-            discordLoginBtn.addEventListener('click', () => {
-                const authUrl = `https://discord.com/api/oauth2/authorize?client_id=${DISCORD_CLIENT_ID}&redirect_uri=${encodeURIComponent(DISCORD_REDIRECT_URI)}&response_type=token&scope=${DISCORD_SCOPES.join('%20')}`;
-                window.location.href = authUrl;
-            });
         }
 
         // Start the app

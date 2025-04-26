@@ -6,28 +6,26 @@
     <title>IMMORTAL | Login</title>
     <style>
         /* ===== Base Reset & Fonts ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
         
         :root {
             --sidebar-width: 240px;
             --sidebar-collapsed-width: 70px;
             --sidebar-bg: rgba(20, 20, 30, 0.95);
-            --sidebar-active: rgba(255, 51, 102, 0.3);
+            --sidebar-active: rgba(0, 255, 0, 0.3);
             --sidebar-text: #e2e8f0;
             --sidebar-icon: #94a3b8;
-            --sidebar-hover: rgba(255, 51, 102, 0.2);
+            --sidebar-hover: rgba(0, 255, 0, 0.2);
             --content-bg: rgba(15, 15, 25, 0.9);
-            --primary: #ff3366;
-            --primary-hover: #e62e5c;
+            --primary: #00ff00;
+            --primary-hover: #00cc00;
             --text-dark: #f8f9fa;
             --text-light: #adb5bd;
             --transition: all 0.3s ease;
             --dark-bg: #000000;
-            --neon-red: #ff3366;
-            --neon-glow: 0 0 10px var(--neon-red), 
-                         0 0 20px var(--neon-red), 
-                         0 0 30px var(--neon-red);
+            --neon-glow: 0 0 10px #00ff00, 
+                         0 0 20px rgba(0, 255, 0, 0.5);
             --glass-border: 1px solid rgba(255, 255, 255, 0.15);
             --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
             --glass-backdrop: blur(12px);
@@ -54,11 +52,11 @@
             min-height: 100vh;
             background-color: var(--dark-bg);
             color: var(--text-dark);
-            font-family: var(--font-game);
+            font-family: var(--font-dashboard);
             overflow: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.1) 0%, transparent 20%);
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 20%);
         }
 
         /* ===== Star Background ===== */
@@ -81,7 +79,7 @@
             will-change: opacity, transform;
         }
 
-        .star.red {
+        .star.green {
             background: var(--primary);
             box-shadow: 0 0 5px var(--primary), 
                         0 0 10px var(--primary);
@@ -97,7 +95,7 @@
             100% { transform: translate(var(--tx), var(--ty)); }
         }
 
-        /* ===== New ASCII Art Login Page ===== */
+        /* ===== New Login Page Design ===== */
         .login-container {
             display: flex;
             justify-content: center;
@@ -115,27 +113,21 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .ascii-art {
-            font-family: 'Courier New', monospace;
-            white-space: pre;
-            line-height: 1.2;
-            text-align: center;
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 900;
             color: var(--primary);
             text-shadow: var(--neon-glow);
-            margin-bottom: 2rem;
-            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
 
-        .version-text {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto 1rem;
-            color: var(--primary);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            font-family: var(--font-game);
+        .tagline {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
         }
 
         .count-text {
@@ -143,35 +135,36 @@
             margin-bottom: 2rem;
             font-size: 0.9rem;
             letter-spacing: 1px;
-            font-family: var(--font-game);
+            font-family: var(--font-dashboard);
         }
 
         /* Enhanced Discord Login Button */
         .discord-login-btn {
             background-color: transparent;
-            color: white;
+            color: var(--text-dark);
             border: 2px solid var(--primary);
             padding: 15px 30px;
             border-radius: 0;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s ease;
             display: block;
             width: 100%;
             max-width: 300px;
             margin: 0 auto;
-            font-family: 'Courier New', monospace;
+            font-family: var(--font-dashboard);
             text-transform: uppercase;
             letter-spacing: 2px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
         }
 
         .discord-login-btn:hover {
-            background-color: rgba(255, 51, 102, 0.2);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.8);
+            background-color: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            transform: translateY(-2px);
         }
 
         .discord-login-btn::before {
@@ -184,10 +177,10 @@
             background: linear-gradient(
                 90deg,
                 transparent,
-                rgba(255, 51, 102, 0.4),
+                rgba(0, 255, 0, 0.4),
                 transparent
             );
-            transition: var(--transition);
+            transition: all 0.5s ease;
         }
 
         .discord-login-btn:hover::before {
@@ -196,7 +189,7 @@
 
         .discord-login-btn i {
             margin-right: 10px;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
         @keyframes fadeIn {
@@ -217,7 +210,7 @@
             justify-content: center;
             align-items: center;
             animation: slideInRight 0.5s ease-out;
-            font-family: var(--font-game);
+            font-family: var(--font-dashboard);
         }
 
         .anti-inspect-modal.show {
@@ -254,10 +247,10 @@
 
         .anti-inspect-btn {
             background-color: var(--primary);
-            color: white;
+            color: black;
             border: none;
             padding: 10px 20px;
-            font-family: var(--font-game);
+            font-family: var(--font-dashboard);
             cursor: pointer;
             transition: var(--transition);
             text-transform: uppercase;
@@ -298,7 +291,7 @@
             background: var(--primary-hover);
         }
 
-        /* ===== Dashboard Styles (Existing) ===== */
+        /* ===== Dashboard Styles ===== */
         .dashboard {
             display: none;
             background-color: var(--dark-bg);
@@ -340,7 +333,7 @@
             justify-content: center;
             font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4);
             border: none;
             transition: var(--transition);
             position: relative;
@@ -350,14 +343,14 @@
         .notification-btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 255, 0, 0.6);
         }
 
         .notification-badge {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--neon-red);
+            background-color: var(--primary);
             color: white;
             width: 20px;
             height: 20px;
@@ -489,7 +482,7 @@
         }
 
         .notification-nav-btn:disabled {
-            background-color: rgba(255, 51, 102, 0.5);
+            background-color: rgba(0, 255, 0, 0.5);
             cursor: not-allowed;
         }
 
@@ -544,7 +537,7 @@
 
         /* Admin Notification Panel */
         .admin-notification-panel {
-            background: rgba(255, 51, 102, 0.1);
+            background: rgba(0, 255, 0, 0.1);
             border: 1px dashed var(--primary);
             border-radius: 8px;
             padding: 20px;
@@ -642,7 +635,7 @@
         }
 
         .profile-menu a:hover {
-            background-color: rgba(255, 51, 102, 0.2);
+            background-color: rgba(0, 255, 0, 0.2);
         }
 
         .profile-menu a.logout {
@@ -650,7 +643,7 @@
         }
 
         .profile-menu a.logout:hover {
-            background-color: rgba(255, 51, 102, 0.3);
+            background-color: rgba(0, 255, 0, 0.3);
         }
 
         /* Admin specific styles */
@@ -673,7 +666,7 @@
 
         .admin-only-message {
             padding: 20px;
-            background: rgba(255, 51, 102, 0.1);
+            background: rgba(0, 255, 0, 0.1);
             border: 1px dashed var(--primary);
             border-radius: 8px;
             text-align: center;
@@ -755,7 +748,7 @@
         .sidebar-toggle:hover {
             background: var(--primary-hover);
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.7);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
         }
 
         .sidebar-toggle i {
@@ -778,7 +771,7 @@
         .game-title-retro {
             font-family: var(--font-game);
             color: var(--primary);
-            text-shadow: 0 0 10px var(--neon-red);
+            text-shadow: 0 0 10px #00ff00;
             margin-bottom: 1rem;
             font-size: 2rem;
         }
@@ -816,7 +809,7 @@
         }
 
         .nav-item:hover {
-            border-color: rgba(255, 51, 102, 0.3);
+            border-color: rgba(0, 255, 0, 0.3);
         }
 
         .nav-item.active {
@@ -900,12 +893,12 @@
             cursor: pointer;
             border: 2px solid var(--primary);
             transition: var(--transition);
-            box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
         }
 
         .user-avatar:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
         }
 
         /* Content Styles */
@@ -1026,7 +1019,7 @@
 
         .leaderboard-item:hover {
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 51, 102, 0.3);
+            border-color: rgba(0, 255, 0, 0.3);
         }
 
         .leaderboard-item.top-1 {
@@ -1171,7 +1164,7 @@
         }
 
         .change-avatar-btn {
-            background-color: rgba(255, 51, 102, 0.2);
+            background-color: rgba(0, 255, 0, 0.2);
             color: var(--text-dark);
             border: 1px dashed var(--primary);
             padding: 10px 15px;
@@ -1185,7 +1178,7 @@
         }
 
         .change-avatar-btn:hover {
-            background-color: rgba(255, 51, 102, 0.3);
+            background-color: rgba(0, 255, 0, 0.3);
         }
 
         .profile-form {
@@ -1217,7 +1210,7 @@
         .form-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.3);
+            box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3);
         }
 
         .form-group small {
@@ -1331,8 +1324,8 @@
 
         .video-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
         }
 
         .video-thumbnail {
@@ -1417,7 +1410,7 @@
         .upload-section h3 {
             color: var(--primary);
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 51, 102, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.3);
             padding-bottom: 10px;
         }
 
@@ -1636,8 +1629,8 @@
 
         .hit-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
+            box-shadow: 0 8px 15px rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
         }
 
         .hit-card h3 {
@@ -1730,8 +1723,8 @@
 
         .tool-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(255, 51, 102, 0.3);
-            border-color: rgba(255, 51, 102, 0.5);
+            box-shadow: 0 8px 15px rgba(0, 255, 0, 0.3);
+            border-color: rgba(0, 255, 0, 0.5);
         }
 
         .tool-card h3 {
@@ -1770,8 +1763,8 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-            .ascii-art {
-                font-size: 0.7rem;
+            .logo-text {
+                font-size: 3rem;
             }
             
             .sidebar {
@@ -1881,6 +1874,14 @@
                 padding: 14px 24px;
                 font-size: 0.9rem;
             }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
         }
 
         /* Utility Classes */
@@ -1911,20 +1912,8 @@
     <!-- Login Page (shown by default) -->
     <div class="login-container" id="loginPage">
         <div class="login-content">
-            <div class="version-text">
-                <span>v1.8.3</span>
-                <span>v1.9.3</span>
-            </div>
-            
-            <div class="ascii-art" id="synxAscii">
-  _____   _____  _   _  __   __
- / ____| / ____|| \ | | \ \ / /
-| (___  | (___  |  \| |  \ V / 
- \___ \  \___ \ | . ` |   > <  
- ____) | ____) || |\  |  / . \ 
-|_____/ |_____/ |_| \_| /_/ \_\
-            </div>
-            
+            <div class="logo-text">DELUXE</div>
+            <div class="tagline">#1 SITE</div>
             <div class="count-text">
                 [ 1839 ACTIVE CONNECTIONS ]
             </div>
@@ -2062,7 +2051,7 @@
             <div class="content" id="dashboardContent">
                 <h1 class="game-title-retro">IMMORTAL</h1>
                 <h2>Welcome back, <span id="username">User</span>!</h2>
-                <p>This is your dark glass-themed dashboard with red accents.</p>
+                <p>This is your dark glass-themed dashboard with green accents.</p>
                 
                 <div class="dashboard-grid">
                     <div>
@@ -2228,7 +2217,7 @@
                 <div class="video-grid" id="videoGrid">
                     <div class="video-card" data-video-id="1">
                         <div class="video-thumbnail">
-                            <img src="https://via.placeholder.com/400x225/1a1a2e/ff3366?text=IMMORTAL+Tutorial" alt="Getting Started">
+                            <img src="https://via.placeholder.com/400x225/1a1a2e/00ff00?text=IMMORTAL+Tutorial" alt="Getting Started">
                             <div class="play-icon">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2244,7 +2233,7 @@
                     </div>
                     <div class="video-card" data-video-id="2">
                         <div class="video-thumbnail">
-                            <img src="https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Advanced+Techniques" alt="Advanced Techniques">
+                            <img src="https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Advanced+Techniques" alt="Advanced Techniques">
                             <div class="play-icon">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2260,7 +2249,7 @@
                     </div>
                     <div class="video-card" data-video-id="3">
                         <div class="video-thumbnail">
-                            <img src="https://via.placeholder.com/400x225/1a1a2e/ff3366?text=VIP+Features" alt="VIP Features">
+                            <img src="https://via.placeholder.com/400x225/1a1a2e/00ff00?text=VIP+Features" alt="VIP Features">
                             <div class="play-icon">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2276,7 +2265,7 @@
                     </div>
                     <div class="video-card" data-video-id="4">
                         <div class="video-thumbnail">
-                            <img src="https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Mobile+Guide" alt="Mobile Guide">
+                            <img src="https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Mobile+Guide" alt="Mobile Guide">
                             <div class="play-icon">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2292,7 +2281,7 @@
                     </div>
                     <div class="video-card" data-video-id="5">
                         <div class="video-thumbnail">
-                            <img src="https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Security+Tips" alt="Security Tips">
+                            <img src="https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Security+Tips" alt="Security Tips">
                             <div class="play-icon">
                                 <i class="fas fa-play"></i>
                             </div>
@@ -2332,7 +2321,7 @@
                             <button type="submit" class="video-upload-btn">
                                 <i class="fas fa-upload"></i> Upload Video
                             </button>
-                            <button type="reset" class="video-upload-btn" style="background: rgba(255, 51, 102, 0.2);">
+                            <button type="reset" class="video-upload-btn" style="background: rgba(0, 255, 0, 0.2);">
                                 <i class="fas fa-times"></i> Cancel
                             </button>
                         </div>
@@ -2602,10 +2591,10 @@
                 const posY = Math.random() * 100;
                 const duration = Math.random() * 5 + 5 + 's';
                 const delay = Math.random() * 5 + 's';
-                const isRed = Math.random() > 0.7;
+                const isGreen = Math.random() > 0.7;
                 
-                if (isRed) {
-                    star.classList.add('red');
+                if (isGreen) {
+                    star.classList.add('green');
                 }
                 
                 const tx = (Math.random() - 0.5) * 10;
@@ -2998,7 +2987,7 @@
                     title: 'Getting Started with IMMORTAL',
                     description: 'Learn the basics of using our platform and its core features.',
                     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=IMMORTAL+Tutorial',
+                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=IMMORTAL+Tutorial',
                     uploadDate: '2023-05-15',
                     duration: '4:32'
                 },
@@ -3007,7 +2996,7 @@
                     title: 'Advanced Hit Techniques',
                     description: 'Master advanced techniques for maximum efficiency in your operations.',
                     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Advanced+Techniques',
+                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Advanced+Techniques',
                     uploadDate: '2023-06-02',
                     duration: '7:45'
                 },
@@ -3016,7 +3005,7 @@
                     title: 'VIP Features Overview',
                     description: 'Explore exclusive features available to VIP members.',
                     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=VIP+Features',
+                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=VIP+Features',
                     uploadDate: '2023-06-15',
                     duration: '5:18'
                 },
@@ -3025,7 +3014,7 @@
                     title: 'Mobile Optimization Guide',
                     description: 'Learn how to use IMMORTAL on mobile devices effectively.',
                     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Mobile+Guide',
+                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Mobile+Guide',
                     uploadDate: '2023-06-20',
                     duration: '6:22'
                 },
@@ -3034,7 +3023,7 @@
                     title: 'Security Best Practices',
                     description: 'Essential security tips to protect your operations.',
                     videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=Security+Tips',
+                    thumbnailUrl: 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=Security+Tips',
                     uploadDate: '2023-06-25',
                     duration: '8:10'
                 }
@@ -3163,7 +3152,7 @@
                     thumbnailReader.readAsDataURL(thumbnailFile);
                 } else {
                     // Use default thumbnail if none provided
-                    videoData.thumbnailUrl = 'https://via.placeholder.com/400x225/1a1a2e/ff3366?text=' + encodeURIComponent(title);
+                    videoData.thumbnailUrl = 'https://via.placeholder.com/400x225/1a1a2e/00ff00?text=' + encodeURIComponent(title);
                     completeVideoUpload(videoData);
                 }
             };
